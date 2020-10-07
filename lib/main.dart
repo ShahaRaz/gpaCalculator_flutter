@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'logic/manager.dart';
 
 void main() {
-  runApp(MyApp());
+  logicManager lManager = new logicManager();
+
+  //runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
