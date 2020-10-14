@@ -1,20 +1,54 @@
+import 'dart:collection';
+
+import 'package:flutter/cupertino.dart';
 import 'package:gpa_israel/logic/academic_degree.dart';
 import 'package:gpa_israel/logic/academic_year_Class.dart';
 
 import 'academic_course.dart';
 
-class logicManager {
+class LogicManager extends ChangeNotifier {
   List<Course> semster1;
   List<Course> semster2;
   List<Course> semster3;
   List<AcademicYear> years;
 
+/*
+  List<Course> _testim = [
+  Course(80, 5, "Linear Algebra"),
+  Course(76, 5, "Calculus 1"),
+  Course(90, 5, "intro to programming JAVA"),
+  Course(80, 5, "Physics 1"),
+  ];*/
+
   AcademicDegree testUser;
+  AcademicDegree _localDegree;
 
   logicManager() {
     print('entered manager');
     testStruct();
   }
+
+  // UnmodifiableListView<Course> get year1SemA{
+  //
+  //   return UnmodifiableListView(_testim);
+  //
+  // }
+
+  void addCourse(String name, int grade, double points, yearTaken_1to7,
+      semesterTaken_1to3) {
+    final Course addMe = Course(grade, points, name);
+    _localDegree.addNewCourse_toDegree(
+        addMe, yearTaken_1to7, semesterTaken_1to3);
+  }
+
+  void getSemestersList(
+      {@required yearTaken_1to7, @required semesterTaken_1to3}) {}
+
+  int getCourseCount({@required yearTaken_1to7, @required semesterTaken_1to3}) {
+    return 7;
+    // later bubble down to the semester to fetch its courses.
+  }
+
   void testStruct() {
     testUser = AcademicDegree(2019, 4);
 
