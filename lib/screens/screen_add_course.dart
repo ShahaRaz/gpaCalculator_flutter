@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpa_israel/logic/academic_semester.dart';
 import 'package:provider/provider.dart';
 import 'package:gpa_israel/logic/manager.dart';
 
@@ -76,8 +77,8 @@ class AddCourseScreen extends StatelessWidget {
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
-                Provider.of<LogicManager>(context)
-                    .addCourse('Statistics', 89, 3, 2, 2); // test
+                Provider.of<LogicManager>(context, listen: false)
+                    .addCourse(_title, _grade, _points, 1, 1); // test
                 Navigator.pop(context);
               },
             ),

@@ -8,10 +8,6 @@ import 'package:gpa_israel/logic/academic_semester.dart';
 
 class SemesterScreen extends StatelessWidget {
   @override
-  Semester currentSemester;
-
-  SemesterScreen(this.currentSemester);
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -51,7 +47,7 @@ class SemesterScreen extends StatelessWidget {
                   height: 10.0,
                 ),
                 Text(
-                  'GPA_Israel',
+                  'GPA  ${Provider.of<LogicManager>(context).getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getSemesterAverage()}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50.0,
@@ -79,7 +75,9 @@ class SemesterScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: Widget_SemesterCoursesList(currentSemester),
+              child: Widget_SemesterCoursesList(
+                  Provider.of<LogicManager>(context)
+                      .getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1)),
             ),
           ),
         ],

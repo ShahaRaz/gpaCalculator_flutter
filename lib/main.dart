@@ -22,18 +22,14 @@ class MyApp extends StatelessWidget {
 }
 
 class homeScreen extends StatelessWidget {
-  LogicManager _logicManager;
-  Semester _demoSemester;
   @override
   Widget build(BuildContext context) {
     buildDemoDegree();
-    return SemesterScreen(_demoSemester);
+    return SemesterScreen();
   }
 
   void buildDemoDegree() {
-    _logicManager = LogicManager();
-    print('after logic manager');
-    _demoSemester = _logicManager.getSemestersList(
-        yearTaken_1to7: 1, semesterTaken_1to3: 1);
+    LogicManager _logicManager = LogicManager();
+    print('after logic manager builder');
   }
 }

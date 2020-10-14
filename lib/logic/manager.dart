@@ -36,16 +36,22 @@ class LogicManager extends ChangeNotifier {
 
   void addCourse(String name, int grade, double points, yearTaken_1to7,
       semesterTaken_1to3) {
+    print('arrived to addCourse');
     final Course addMe = Course(grade, points, name);
     _localDegree.addNewCourse_toDegree(
         addMe, yearTaken_1to7, semesterTaken_1to3);
+    print('b4 notifyListeners__ ');
+    notifyListeners();
+    print('after notifyListeners__');
   }
 
-  Semester getSemestersList(
+  Semester getSemester(
       {@required int yearTaken_1to7, @required int semesterTaken_1to3}) {
     return _localDegree.getSemester(yearTaken_1to7,
         semesterTaken_1to3); // todo ater bubble down to the semester to fetch its courses.
   }
+  
+  
 
   int getCourseCount({@required yearTaken_1to7, @required semesterTaken_1to3}) {
     return 7;
@@ -58,6 +64,7 @@ class LogicManager extends ChangeNotifier {
     semster1.add(new Course(76, 5, "Calculus 1"));
     semster1.add(new Course(90, 5, "intro to programming JAVA"));
     semster1.add(new Course(80, 5, "Physics 1"));
+    semster1.add(new Course(80, 5, "Physics 65"));
     for (Course c in semster1) {
       _localDegree.addNewCourse_toDegree(c, 1, 1);
       print('inserted course to 1 ');
