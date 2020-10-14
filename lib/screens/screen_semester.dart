@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gpa_israel/screens/screen_add_course.dart';
 import 'package:provider/provider.dart';
 import 'package:gpa_israel/logic/manager.dart';
+import 'package:gpa_israel/widgets/widget_semester.dart';
+import 'package:gpa_israel/widgets/widget_course.dart';
 
 class SemesterScreen extends StatelessWidget {
   @override
@@ -80,29 +82,4 @@ class SemesterScreen extends StatelessWidget {
   }
 }
 
-class Widget_SemesterCoursesList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Widget_Semester(),
-        Widget_Semester(),
-        Widget_Semester(),
-      ],
-    );
-  }
-}
 
-class Widget_Semester extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        'this is a course grade',
-        style: TextStyle(fontSize: 20), // todo - later export
-      ),
-      trailing: Text(
-          '86'), // todo -  later set it to a row with the points on the side.
-    );
-  }
-}
