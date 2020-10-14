@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:gpa_israel/logic/academic_degree.dart';
 import 'package:gpa_israel/logic/academic_semester.dart';
 import 'package:gpa_israel/logic/academic_year_Class.dart';
-
+import 'package:flutter/foundation.dart';
 import 'academic_course.dart';
 
-class LogicManager {
+class LogicManager extends ChangeNotifier {
   AcademicDegree _localDegree;
 
   LogicManager() {

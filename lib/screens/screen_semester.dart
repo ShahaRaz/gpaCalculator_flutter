@@ -6,12 +6,9 @@ import 'package:gpa_israel/widgets/widget_semester.dart';
 import 'package:gpa_israel/widgets/widget_course.dart';
 import 'package:gpa_israel/logic/academic_semester.dart';
 
-
 class SemesterScreen extends StatelessWidget {
   @override
-
   Semester currentSemester;
-
 
   SemesterScreen(this.currentSemester);
 
@@ -62,7 +59,8 @@ class SemesterScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'semester', // '${Provider.of<LogicManager>(context).getCourseCount} Tasks',
+                  //'${Provider.of<LogicManager>(context).getCourseCount} Tasks',
+                  '${Provider.of<LogicManager>(context).getCourseCount(yearTaken_1to7: 1, semesterTaken_1to3: 1)} Courses',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -89,5 +87,3 @@ class SemesterScreen extends StatelessWidget {
     );
   }
 }
-
-
