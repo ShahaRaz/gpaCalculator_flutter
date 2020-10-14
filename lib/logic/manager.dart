@@ -53,8 +53,8 @@ class LogicManager extends ChangeNotifier {
   
   
 
-  int getCourseCount({@required yearTaken_1to7, @required semesterTaken_1to3}) {
-    return 7;
+  int getCourseCountSemester({@required yearTaken_1to7, @required semesterTaken_1to3}) {
+    return _localDegree.getSemester(yearTaken_1to7, semesterTaken_1to3).getNumberOfCoursesInSemester();
     // todo later bubble down to the semester to fetch its courses.
   }
 

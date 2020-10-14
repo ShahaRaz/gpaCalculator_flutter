@@ -59,7 +59,7 @@ class SemesterScreen extends StatelessWidget {
                     ),
                     Text(
                       //'${Provider.of<LogicManager>(context).getCourseCount} Tasks',
-                      '${degreeData.getCourseCount(yearTaken_1to7: 1, semesterTaken_1to3: 1)} Courses',
+                      '${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getNumberOfCoursesInSemester()} Courses',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

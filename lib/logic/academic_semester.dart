@@ -7,26 +7,31 @@ class Semester {
   List<Course> coursesInSemester;
   int _semesterENUM; //const -> SEMESTER_NAMES
   double _semesterAvg;
+
+  int _numOfCoursesInSemester = 0;
+  double _totalPointsInSemester = 0;
+  AcademicYear _academicYear; // in which year was this semester
+
   // ignore: non_constant_identifier_names
   double _calcHelper_numeratorForAvg;
   // ignore: non_constant_identifier_names
-  double _calcHelper_denominatorForAvg;
-
-  AcademicYear _academicYear; // in which year was this semester
+  double _pointsInSemester_calcHelper;
 
   Semester(this._semesterENUM) {
     coursesInSemester = [];
-    print('entered semester constructor');
     _semesterAvg = 0;
     _calcHelper_numeratorForAvg = 0;
-    _calcHelper_denominatorForAvg = 0;
-    print('finished semester constructor');
+    _pointsInSemester_calcHelper = 0;
+  }
+
+  double getTotalPointsInSemster() {
+    return _totalPointsInSemester;
   }
 
   void addNewCourse_toSemester(Course addMe) {
     coursesInSemester.add(addMe);
-    _calcHelper_numeratorForAvg += (addMe.getPoints() * addMe.getGrade());
-    _calcHelper_denominatorForAvg += addMe.getPoints();
+    _calcHelper_numeratorForAvg += (addMe.getNumeratorConterbution());
+    _pointsInSemester_calcHelper += addMe.getPoints();
   }
 
   int getNumberOfCoursesInSemester() {
@@ -34,7 +39,7 @@ class Semester {
   }
 
   String getSemesterAverage() {
-    _semesterAvg = _calcHelper_numeratorForAvg / _calcHelper_denominatorForAvg;
+    _semesterAvg = _calcHelper_numeratorForAvg / _pointsInSemester_calcHelper;
     return _semesterAvg.toStringAsFixed(2);
   }
 
@@ -51,10 +56,10 @@ class Semester {
   }
 
   void deleteCourseFromSemester(Course deleteMe) {
-    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
-    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
+    _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
+    _pointsInSemester_calcHelper -= deleteMe.getPoints();
+    _numOfCoursesInSemester--; // now also availble with list.length (later maybe not) if we change structure
     coursesInSemester.remove(deleteMe);
     _academicYear.deleteCourseFromYear(deleteMe);
   }
-
 }

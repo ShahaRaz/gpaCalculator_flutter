@@ -7,14 +7,12 @@ import 'academic_semester.dart';
 class AcademicYear {
   List<Semester> _semesters; // 1,2,3= summer
   int _academicYear; // if starting in oct2020 -> the year counts as 2021
-  double _yearlyAverage=0;
+  double _yearlyAverage = 0;
   // ignore: non_constant_identifier_names
-  double _calcHelper_numeratorForAvg=0;
-  // ignore: non_constant_identifier_names
-  double _calcHelper_denominatorForAvg=0;
+  double _calcHelper_numeratorForAvg = 0;
 
-  int _coursesInYear=0;
-  double _pointsInYear=0;
+  int _numOfCoursesInYear = 0;
+  double _pointsInYear_calcHelper = 0;
   AcademicDegree _academicDegree; // point to parent
 
   AcademicYear(this._academicYear) {
@@ -36,13 +34,12 @@ class AcademicYear {
 
   void addNewCourse_toYear(Course addMe, int semesterNum_1to3) {
     _semesters[semesterNum_1to3].addNewCourse_toSemester(addMe);
-    _calcHelper_numeratorForAvg += (addMe.getPoints() * addMe.getGrade());
-    _calcHelper_denominatorForAvg += addMe.getPoints();
+    _calcHelper_numeratorForAvg += (addMe.getNumeratorConterbution());
+    _pointsInYear_calcHelper += addMe.getPoints();
   }
 
   String getYearlyAverage() {
-    _yearlyAverage =
-        _calcHelper_numeratorForAvg / _calcHelper_denominatorForAvg;
+    _yearlyAverage = _calcHelper_numeratorForAvg / _pointsInYear_calcHelper;
     return _yearlyAverage.toStringAsFixed(2);
   }
 
@@ -54,13 +51,15 @@ class AcademicYear {
     return _semesters[semesterTaken_1to3];
   }
 
-  void deleteCourseFromYear(Course deleteMe) {
-    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
-    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
-    _coursesInYear--;
-    _pointsInYear -= deleteMe.getPoints();
-    _academicDegree.deleteCourseFromDegree(deleteMe);
+  int getNumberOfCoursesInYear() {
+    return _numOfCoursesInYear;
   }
 
+  void deleteCourseFromYear(Course deleteMe) {
+    _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
+    _pointsInYear_calcHelper -=
+        deleteMe.getPoints(); // = to the denominator (keep for readability)
+    _numOfCoursesInYear--;
+    _academicDegree.deleteCourseFromDegree(deleteMe);
   }
 }

@@ -8,14 +8,14 @@ class AcademicDegree {
   int _yearBegan; // if starting in oct2020 -> the year counts as 2021
   int _totalYearsForDegree;
   double _degAverage;
-  // ignore: non_constant_identifier_names
-  double _calcHelper_numeratorForAvg;
 
-  int _coursesInDegree = 0;
+  int _numOfCoursesInDegree = 0;
   double _pointsInDegree = 0;
 
   // ignore: non_constant_identifier_names
-  double _calcHelper_denominatorForAvg;
+  double _pointsInDegree_calcHelper;
+  // ignore: non_constant_identifier_names
+  double _calcHelper_numeratorForAvg;
 
   AcademicDegree(this._yearBegan, this._totalYearsForDegree) {
     _academicYears = [];
@@ -26,7 +26,7 @@ class AcademicDegree {
       temp.setMyDegree(this);
       _academicYears.add(temp);
     }
-    _calcHelper_denominatorForAvg = 0;
+    _pointsInDegree_calcHelper = 0;
     _calcHelper_numeratorForAvg = 0;
     _degAverage = 0;
     print('finished degree constructor');
@@ -43,8 +43,10 @@ class AcademicDegree {
     print('passed if ');
     _academicYears[yearTaken_1to7]
         .addNewCourse_toYear(addMe, semesterTaken_1to3);
-    _calcHelper_numeratorForAvg += (addMe.getPoints() * addMe.getGrade());
-    _calcHelper_denominatorForAvg += addMe.getPoints();
+    _calcHelper_numeratorForAvg += (addMe.getNumeratorConterbution());
+    _pointsInDegree_calcHelper += addMe.getPoints();
+    _numOfCoursesInDegree++;
+    _pointsInDegree = _pointsInDegree_calcHelper;
   }
 
   void addNewYear(AcademicYear addMe) {
@@ -52,7 +54,7 @@ class AcademicDegree {
   }
 
   String getDegAverage() {
-    _degAverage = _calcHelper_numeratorForAvg / _calcHelper_denominatorForAvg;
+    _degAverage = _calcHelper_numeratorForAvg / _pointsInDegree_calcHelper;
     return _degAverage.toStringAsFixed(2);
   }
 
@@ -62,9 +64,9 @@ class AcademicDegree {
   }
 
   void deleteCourseFromDegree(Course deleteMe) {
-    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
-    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
-    _coursesInDegree--;
+    _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
+    _pointsInDegree_calcHelper -= deleteMe.getPoints();
+    _numOfCoursesInDegree--;
     _pointsInDegree -= deleteMe.getPoints();
   }
 }
