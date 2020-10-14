@@ -12,6 +12,9 @@ class AcademicYear {
   double _calcHelper_numeratorForAvg=0;
   // ignore: non_constant_identifier_names
   double _calcHelper_denominatorForAvg=0;
+
+  int _coursesInYear=0;
+  double _pointsInYear=0;
   AcademicDegree _academicDegree; // point to parent
 
   AcademicYear(this._academicYear) {
@@ -49,5 +52,15 @@ class AcademicYear {
 
   Semester getSemester(@required int semesterTaken_1to3) {
     return _semesters[semesterTaken_1to3];
+  }
+
+  void deleteCourseFromYear(Course deleteMe) {
+    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
+    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
+    _coursesInYear--;
+    _pointsInYear -= deleteMe.getPoints();
+    _academicDegree.deleteCourseFromDegree(deleteMe);
+  }
+
   }
 }

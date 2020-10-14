@@ -11,11 +11,14 @@ class AcademicDegree {
   // ignore: non_constant_identifier_names
   double _calcHelper_numeratorForAvg;
 
+  int _coursesInDegree = 0;
+  double _pointsInDegree = 0;
+
   // ignore: non_constant_identifier_names
   double _calcHelper_denominatorForAvg;
 
   AcademicDegree(this._yearBegan, this._totalYearsForDegree) {
-    _academicYears=[];
+    _academicYears = [];
     print('entered degree constructor');
     AcademicYear temp;
     for (int i = 1; i <= _totalYearsForDegree; i++) {
@@ -56,5 +59,12 @@ class AcademicDegree {
   Semester getSemester(
       @required int yearTaken_1to7, @required int semesterTaken_1to3) {
     return _academicYears[yearTaken_1to7].getSemester(semesterTaken_1to3);
+  }
+
+  void deleteCourseFromDegree(Course deleteMe) {
+    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
+    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
+    _coursesInDegree--;
+    _pointsInDegree -= deleteMe.getPoints();
   }
 }

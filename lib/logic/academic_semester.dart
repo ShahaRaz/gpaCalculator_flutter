@@ -49,4 +49,12 @@ class Semester {
   List<Course> getCoursesList() {
     return this.coursesInSemester;
   }
+
+  void deleteCourseFromSemester(Course deleteMe) {
+    _calcHelper_numeratorForAvg -= (deleteMe.getPoints() * deleteMe.getGrade());
+    _calcHelper_denominatorForAvg -= deleteMe.getPoints();
+    coursesInSemester.remove(deleteMe);
+    _academicYear.deleteCourseFromYear(deleteMe);
+  }
+
 }
