@@ -4,7 +4,7 @@ import 'academic_year_Class.dart';
 import 'academic_course.dart';
 
 class Semester {
-  List<Course> _coursesInSemester;
+  List<Course> coursesInSemester;
   int _semesterENUM; //const -> SEMESTER_NAMES
   double _semesterAvg;
   // ignore: non_constant_identifier_names
@@ -15,19 +15,22 @@ class Semester {
   AcademicYear _academicYear; // in which year was this semester
 
   Semester(this._semesterENUM) {
+    coursesInSemester = [];
+    print('entered semester constructor');
     _semesterAvg = 0;
     _calcHelper_numeratorForAvg = 0;
     _calcHelper_denominatorForAvg = 0;
+    print('finished semester constructor');
   }
 
   void addNewCourse_toSemester(Course addMe) {
-    _coursesInSemester.add(addMe);
+    coursesInSemester.add(addMe);
     _calcHelper_numeratorForAvg += (addMe.getPoints() * addMe.getGrade());
     _calcHelper_denominatorForAvg += addMe.getPoints();
   }
 
   int getNumberOfCoursesInSemester() {
-    return _coursesInSemester.length;
+    return coursesInSemester.length;
   }
 
   String getSemesterAverage() {
@@ -41,5 +44,9 @@ class Semester {
 
   void setMyYear(AcademicYear theOwner) {
     _academicYear = theOwner;
+  }
+
+  List<Course> getCoursesList() {
+    return this.coursesInSemester;
   }
 }

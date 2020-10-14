@@ -4,9 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:gpa_israel/logic/manager.dart';
 import 'package:gpa_israel/widgets/widget_semester.dart';
 import 'package:gpa_israel/widgets/widget_course.dart';
+import 'package:gpa_israel/logic/academic_semester.dart';
+
 
 class SemesterScreen extends StatelessWidget {
   @override
+
+  Semester currentSemester;
+
+
+  SemesterScreen(this.currentSemester);
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -73,7 +81,7 @@ class SemesterScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: Widget_SemesterCoursesList(),
+              child: Widget_SemesterCoursesList(currentSemester),
             ),
           ),
         ],

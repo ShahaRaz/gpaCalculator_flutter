@@ -1,9 +1,9 @@
 import 'academic_semester.dart';
 
 class Course {
-  int _grade;
-  String _subject;
-  double _pointsForCourse; // weight (nekudot zhut)
+  int _grade = 0;
+  String _subject = '';
+  double _pointsForCourse = 0; // weight (nekudot zhut)
   Semester _semesterTaken; // semster will know in which year he blongs
 
   Course(this._grade, this._pointsForCourse, this._subject); // 1,2,3=summer
@@ -23,5 +23,4 @@ class Course {
   String getName() {
     return this._subject;
   }
-
 }

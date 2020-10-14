@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
 import 'academic_year_Class.dart';
+import 'academic_semester.dart';
 
 class AcademicDegree {
   List<AcademicYear> _academicYears;
@@ -13,27 +14,32 @@ class AcademicDegree {
   // ignore: non_constant_identifier_names
   double _calcHelper_denominatorForAvg;
 
-  AcademicDegree(this._yearBegan,this._totalYearsForDegree) {
-    //TODO create empty years & semesters using constructors
+  AcademicDegree(this._yearBegan, this._totalYearsForDegree) {
+    _academicYears=[];
+    print('entered degree constructor');
     AcademicYear temp;
-    for(int i=1;i<=_totalYearsForDegree;i++){
+    for (int i = 1; i <= _totalYearsForDegree; i++) {
       temp = new AcademicYear(i);
       temp.setMyDegree(this);
       _academicYears.add(temp);
     }
     _calcHelper_denominatorForAvg = 0;
     _calcHelper_numeratorForAvg = 0;
-    _degAverage=0;
-    
+    _degAverage = 0;
+    print('finished degree constructor');
   }
 
   // ignore: non_constant_identifier_names
-  void addNewCourse_toDegree(Course addMe, int yearTaken_1to7, int semesterTaken_1to3) {
-    if(yearTaken_1to7>_totalYearsForDegree){
-      //TODO manage if needed or take care by UserInterface
-      return; 
+  void addNewCourse_toDegree(
+      Course addMe, int yearTaken_1to7, int semesterTaken_1to3) {
+    print('entered addNewCourse in Degree');
+    if (yearTaken_1to7 > _totalYearsForDegree) {
+      // all input rules should be checked in UI
+      return;
     }
-    _academicYears[yearTaken_1to7].addNewCourse_toYear(addMe, semesterTaken_1to3);
+    print('passed if ');
+    _academicYears[yearTaken_1to7]
+        .addNewCourse_toYear(addMe, semesterTaken_1to3);
     _calcHelper_numeratorForAvg += (addMe.getPoints() * addMe.getGrade());
     _calcHelper_denominatorForAvg += addMe.getPoints();
   }
@@ -45,5 +51,10 @@ class AcademicDegree {
   String getDegAverage() {
     _degAverage = _calcHelper_numeratorForAvg / _calcHelper_denominatorForAvg;
     return _degAverage.toStringAsFixed(2);
+  }
+
+  Semester getSemester(
+      @required int yearTaken_1to7, @required int semesterTaken_1to3) {
+    return _academicYears[yearTaken_1to7].getSemester(semesterTaken_1to3);
   }
 }
