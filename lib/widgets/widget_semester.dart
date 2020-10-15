@@ -12,10 +12,25 @@ class Widget_SemesterCoursesList extends StatelessWidget {
     List<Course> courses = semester.getCoursesList();
     return ListView.builder(
       itemBuilder: (context, index) {
-        return Widget_Course(courses[index].getName(),
-            courses[index].getGrade(), courses[index].getPoints());
+        return Widget_Course(
+          grade: courses[index].getGrade(),
+          name: courses[index].getName(),
+          points: courses[index].getPoints(),
+          longPressFun: () {
+            semester.deleteCourseFromSemester(courses[index]);
+          },
+        );
       },
       itemCount: courses.length,
     );
   }
 }
+
+//
+// return Widget_Course(courses[index].getName(),
+// courses[index].getGrade(),
+// courses[index].getPoints(),
+// longPressFun:(){
+// print('blabla');
+// }
+// );

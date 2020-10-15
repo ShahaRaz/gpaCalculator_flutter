@@ -56,10 +56,14 @@ class Semester {
   }
 
   void deleteCourseFromSemester(Course deleteMe) {
+    print('_________++++++____________________________DELETECOURSE');
+    print('enter deleteFromSemester, avg is: ${getSemesterAverage()}' );
     _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
     _pointsInSemester_calcHelper -= deleteMe.getPoints();
     _numOfCoursesInSemester--; // now also availble with list.length (later maybe not) if we change structure
     coursesInSemester.remove(deleteMe);
     _academicYear.deleteCourseFromYear(deleteMe);
+    print('finished deleteFromSemester, avg is: ${getSemesterAverage()}' );
+
   }
 }

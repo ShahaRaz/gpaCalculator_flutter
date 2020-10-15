@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
+import 'package:gpa_israel/logic/manager.dart';
 import 'academic_year_Class.dart';
 import 'academic_semester.dart';
 
@@ -8,7 +9,7 @@ class AcademicDegree {
   int _yearBegan; // if starting in oct2020 -> the year counts as 2021
   int _totalYearsForDegree;
   double _degAverage;
-
+  LogicManager myLogicManager;
   int _numOfCoursesInDegree = 0;
   double _pointsInDegree = 0;
 
@@ -17,7 +18,7 @@ class AcademicDegree {
   // ignore: non_constant_identifier_names
   double _calcHelper_numeratorForAvg;
 
-  AcademicDegree(this._yearBegan, this._totalYearsForDegree) {
+  AcademicDegree(this._yearBegan, this._totalYearsForDegree,LogicManager myManager) {
     _academicYears = [];
     print('entered degree constructor');
     AcademicYear temp;
@@ -29,6 +30,7 @@ class AcademicDegree {
     _pointsInDegree_calcHelper = 0;
     _calcHelper_numeratorForAvg = 0;
     _degAverage = 0;
+    myLogicManager=myManager;
     print('finished degree constructor');
   }
 
@@ -68,5 +70,8 @@ class AcademicDegree {
     _pointsInDegree_calcHelper -= deleteMe.getPoints();
     _numOfCoursesInDegree--;
     _pointsInDegree -= deleteMe.getPoints();
+    myLogicManager.deleteCourseNUpdate(deleteMe);
   }
+
+
 }

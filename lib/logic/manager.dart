@@ -12,7 +12,7 @@ class LogicManager extends ChangeNotifier {
 
   LogicManager() {
     print('entered manager');
-    _localDegree = new AcademicDegree(2019, 4);
+    _localDegree = new AcademicDegree(2019, 4, this);
     print('finished init__________________');
     testStruct();
     print(_localDegree.getSemester(1, 1).getNumberOfCoursesInSemester());
@@ -50,11 +50,12 @@ class LogicManager extends ChangeNotifier {
     return _localDegree.getSemester(yearTaken_1to7,
         semesterTaken_1to3); // todo ater bubble down to the semester to fetch its courses.
   }
-  
-  
 
-  int getCourseCountSemester({@required yearTaken_1to7, @required semesterTaken_1to3}) {
-    return _localDegree.getSemester(yearTaken_1to7, semesterTaken_1to3).getNumberOfCoursesInSemester();
+  int getCourseCountSemester(
+      {@required yearTaken_1to7, @required semesterTaken_1to3}) {
+    return _localDegree
+        .getSemester(yearTaken_1to7, semesterTaken_1to3)
+        .getNumberOfCoursesInSemester();
     // todo later bubble down to the semester to fetch its courses.
   }
 
@@ -85,5 +86,15 @@ class LogicManager extends ChangeNotifier {
       _localDegree.addNewCourse_toDegree(c, 2, 1);
       print('inserted course to 3 ');
     }
+  }
+
+  void deleteCourseNUpdate(Course deleteMe) {
+    print('course deleted : ${deleteMe.getName()}');
+    String newGPA = _localDegree.getSemester(1, 1).getSemesterAverage();
+    print('newGPA: $newGPA');
+    notifyListeners();
+  }
+  void courseDeletedUpdateUI(){
+    notifyListeners();
   }
 }

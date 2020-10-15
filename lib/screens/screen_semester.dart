@@ -10,6 +10,7 @@ class SemesterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LogicManager>(
+
       // consumer vid 220, 15:00 flutter Udemy Angela
       builder: (context, degreeData, child) {
         return Scaffold(

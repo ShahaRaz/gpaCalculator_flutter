@@ -15,9 +15,6 @@ class Course {
     this._semesterTaken = parentSemester;
   }
 
-  void deleteTheCourse() {
-    _semesterTaken.deleteCourseFromSemester(this);
-  }
 
   int getGrade() {
     return this._grade;
