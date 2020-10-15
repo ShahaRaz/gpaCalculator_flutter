@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/screens/screen_add_course.dart';
+import 'package:gpa_israel/widgets/widget_circle_with_title.dart';
 import 'package:provider/provider.dart';
 import 'package:gpa_israel/logic/manager.dart';
 import 'package:gpa_israel/widgets/widget_semester.dart';
-import 'package:gpa_israel/widgets/widget_course.dart';
-import 'package:gpa_israel/logic/academic_semester.dart';
+import 'package:gpa_israel/constant_views.dart';
 
 class SemesterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LogicManager>(
-
       // consumer vid 220, 15:00 flutter Udemy Angela
       builder: (context, degreeData, child) {
         return Scaffold(
@@ -38,33 +37,21 @@ class SemesterScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.list,
-                        size: 30.0,
-                        color: Colors.lightBlueAccent,
-                      ),
-                      backgroundColor: Colors.white,
-                      radius: 30.0,
+                    CircleWithTitle(
+                      headLine: 'menu',
+                      inputIcon: Icons.list,
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
                     Text(
                       'GPA  ${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getSemesterAverage()}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: kTXTSTYLE_WHITE50_BOLD,
                     ),
                     Text(
                       //'${Provider.of<LogicManager>(context).getCourseCount} Tasks',
                       '${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getNumberOfCoursesInSemester()} Courses',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
+                      style: kTXTSTYLE_WHITE_SUBTEXT,
                     ),
                   ],
                 ),

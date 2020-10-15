@@ -24,6 +24,7 @@ class Widget_SemesterCoursesList extends StatelessWidget {
       itemCount: courses.length,
     );
   }
+
 }
 
 //

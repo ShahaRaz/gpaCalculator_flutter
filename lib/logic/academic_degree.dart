@@ -18,7 +18,8 @@ class AcademicDegree {
   // ignore: non_constant_identifier_names
   double _calcHelper_numeratorForAvg;
 
-  AcademicDegree(this._yearBegan, this._totalYearsForDegree,LogicManager myManager) {
+  AcademicDegree(
+      this._yearBegan, this._totalYearsForDegree, LogicManager myManager) {
     _academicYears = [];
     print('entered degree constructor');
     AcademicYear temp;
@@ -30,7 +31,7 @@ class AcademicDegree {
     _pointsInDegree_calcHelper = 0;
     _calcHelper_numeratorForAvg = 0;
     _degAverage = 0;
-    myLogicManager=myManager;
+    myLogicManager = myManager;
     print('finished degree constructor');
   }
 
@@ -65,6 +66,10 @@ class AcademicDegree {
     return _academicYears[yearTaken_1to7].getSemester(semesterTaken_1to3);
   }
 
+  AcademicYear getAcademicYear({@required year_1to7}) {
+    return _academicYears[year_1to7];
+  }
+
   void deleteCourseFromDegree(Course deleteMe) {
     _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
     _pointsInDegree_calcHelper -= deleteMe.getPoints();
@@ -72,6 +77,4 @@ class AcademicDegree {
     _pointsInDegree -= deleteMe.getPoints();
     myLogicManager.deleteCourseNUpdate(deleteMe);
   }
-
-
 }

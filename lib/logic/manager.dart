@@ -48,7 +48,7 @@ class LogicManager extends ChangeNotifier {
   Semester getSemester(
       {@required int yearTaken_1to7, @required int semesterTaken_1to3}) {
     return _localDegree.getSemester(yearTaken_1to7,
-        semesterTaken_1to3); // todo ater bubble down to the semester to fetch its courses.
+        semesterTaken_1to3);
   }
 
   int getCourseCountSemester(
@@ -56,16 +56,18 @@ class LogicManager extends ChangeNotifier {
     return _localDegree
         .getSemester(yearTaken_1to7, semesterTaken_1to3)
         .getNumberOfCoursesInSemester();
-    // todo later bubble down to the semester to fetch its courses.
+  }
+
+  AcademicYear getAcademicYear({@required int year_1to7}){
+    return _localDegree.getAcademicYear(year_1to7: year_1to7);
   }
 
   void testStruct() {
     semster1 = [];
     semster1.add(new Course(80, 5, "Linear Algebra"));
     semster1.add(new Course(76, 5, "Calculus 1"));
-    semster1.add(new Course(90, 5, "intro to programming JAVA"));
+    semster1.add(new Course(90, 5, "intro to JAVA"));
     semster1.add(new Course(80, 5, "Physics 1"));
-    semster1.add(new Course(80, 5, "Physics 65"));
     for (Course c in semster1) {
       _localDegree.addNewCourse_toDegree(c, 1, 1);
       print('inserted course to 1 ');

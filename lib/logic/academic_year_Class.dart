@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
-import 'constants.dart';
+import 'constants_logic.dart';
 import 'academic_degree.dart';
 import 'academic_semester.dart';
 
@@ -19,7 +19,7 @@ class AcademicYear {
     _semesters = [];
     print('entered year constructor');
     Semester temp;
-    for (int i = 0; i < NUM_OF_SEMESTERS_PER_YEAR; i++) {
+    for (int i = 0; i < kNUM_OF_SEMESTERS_PER_YEAR; i++) {
       temp = new Semester(i);
       temp.setMyYear(this); // back pointing
       print('finished setMyYear in year class');

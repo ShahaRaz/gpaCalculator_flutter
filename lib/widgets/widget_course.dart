@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpa_israel/constant_views.dart';
 
 class Widget_Course extends StatelessWidget {
   final String name;
@@ -11,13 +12,17 @@ class Widget_Course extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onLongPress: longPressFun,
+      onLongPress: () {
+        //TODO: add here alert dialog , & ask if edit or delete (from level above maybe, in widget_semester)
+        longPressFun();
+      },
       title: Text(
         name,
-        style: TextStyle(fontSize: 20), // todo - later export
+        style: kTXTSTYLE_BLACK20_BOLD, // todo - later export
       ),
       trailing: Text(
         '$grade  / $points', // todo -  later set it to a row with the points on the side.
+        style: TextStyle(fontSize: 20),
       ),
     );
   }

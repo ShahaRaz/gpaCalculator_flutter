@@ -1,4 +1,4 @@
-import 'package:gpa_israel/logic/constants.dart';
+import 'package:gpa_israel/logic/constants_logic.dart';
 
 import 'academic_year_Class.dart';
 import 'academic_course.dart';
@@ -8,7 +8,8 @@ class Semester {
   int _semesterENUM; //const -> SEMESTER_NAMES
   double _semesterAvg;
 
-  int _numOfCoursesInSemester = 0;
+  int _numOfCoursesInSemester = 0; // also available using courses.length (maybe later it wouldn't
+   // (if adding also categories for courses)
   double _totalPointsInSemester = 0;
   AcademicYear _academicYear; // in which year was this semester
 
@@ -16,6 +17,8 @@ class Semester {
   double _calcHelper_numeratorForAvg;
   // ignore: non_constant_identifier_names
   double _pointsInSemester_calcHelper;
+
+
 
   Semester(this._semesterENUM) {
     coursesInSemester = [];
@@ -30,6 +33,7 @@ class Semester {
 
   void addNewCourse_toSemester(Course addMe) {
     coursesInSemester.add(addMe);
+    _numOfCoursesInSemester++;
     _calcHelper_numeratorForAvg += (addMe.getNumeratorConterbution());
     _pointsInSemester_calcHelper += addMe.getPoints();
   }
@@ -44,7 +48,7 @@ class Semester {
   }
 
   String getSemesterName() {
-    return SEMESTER_NAMES[_semesterENUM]; //
+    return kSEMESTER_NAMES[_semesterENUM]; //
   }
 
   void setMyYear(AcademicYear theOwner) {
@@ -56,14 +60,11 @@ class Semester {
   }
 
   void deleteCourseFromSemester(Course deleteMe) {
-    print('_________++++++____________________________DELETECOURSE');
-    print('enter deleteFromSemester, avg is: ${getSemesterAverage()}' );
     _calcHelper_numeratorForAvg -= (deleteMe.getNumeratorConterbution());
     _pointsInSemester_calcHelper -= deleteMe.getPoints();
     _numOfCoursesInSemester--; // now also availble with list.length (later maybe not) if we change structure
     coursesInSemester.remove(deleteMe);
     _academicYear.deleteCourseFromYear(deleteMe);
-    print('finished deleteFromSemester, avg is: ${getSemesterAverage()}' );
-
+    
   }
 }
