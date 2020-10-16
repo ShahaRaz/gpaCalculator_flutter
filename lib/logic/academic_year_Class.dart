@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
 import 'constants_logic.dart';
@@ -49,6 +51,10 @@ class AcademicYear {
 
   Semester getSemester(@required int semesterTaken_1to3) {
     return _semesters[semesterTaken_1to3];
+  }
+
+  UnmodifiableListView<Semester> getSemestersList(){
+    return _semesters;
   }
 
   int getNumberOfCoursesInYear() {

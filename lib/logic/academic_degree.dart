@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
 import 'package:gpa_israel/logic/manager.dart';
@@ -77,4 +79,9 @@ class AcademicDegree {
     _pointsInDegree -= deleteMe.getPoints();
     myLogicManager.deleteCourseNUpdate(deleteMe);
   }
+
+  UnmodifiableListView<AcademicYear> getYearsList(){
+    return _academicYears;
+  }
+
 }

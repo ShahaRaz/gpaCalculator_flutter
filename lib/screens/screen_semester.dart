@@ -45,23 +45,11 @@ class SemesterScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(
-                    top: 30.0, left: 30.0, right: 30.0, bottom: 30.0),
+                    top: 30.0, left: 20.0, right: 20.0, bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-/*                    CircleWithTitle(
-                      headLine: 'menu',
-                      inputIcon: Icons.list,
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),*/
-/*                    AutoSizeText(
-                      'GPA  ${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getSemesterAverage()}',
-                      style: kTXTSTYLE_WHITE50_BOLD,
-                      minFontSize: 30,
-                      maxFontSize: 60,
-                    ),*/
+
                     RowAverages(
                         semesterAvg: degreeData
                             .getSemester(

@@ -20,28 +20,32 @@ class RowAverages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        CircleWithTitle(
-          headLine: 'Term',
-          inputText: semesterAvg,
-          inputStyle: kTXTSTYLE_LBLUE30_BOLD,
-          bottomLine: semesterID,
-        ),
-        CircleWithTitle(
-          headLine: 'Year',
-          inputText: yearAvg,
-          inputStyle: kTXTSTYLE_LBLUE30_BOLD,
-          bottomLine: yearID,
-        ),
-        CircleWithTitle(
-          headLine: 'Degree',
-          inputText: degreeAvg,
-          inputStyle: kTXTSTYLE_LBLUE30_BOLD,
-          bottomLine: degreeID,
-        ),
-      ],
-    );
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CircleWithTitle(
+            headLine: 'Term',
+            inputText: semesterAvg,
+            inputStyle: kTXTSTYLE_LBLUE30_BOLD,
+            bottomLine: semesterID,
+          ),
+          CircleWithTitle(
+            headLine: 'Year',
+            inputText: yearAvg,
+            inputStyle: kTXTSTYLE_LBLUE30_BOLD,
+            bottomLine: yearID,
+          ),
+          CircleWithTitle(
+            headLine: 'Degree',
+            inputText: degreeAvg,
+            inputStyle: kTXTSTYLE_LBLUE30_BOLD,
+            bottomLine: degreeID,
+          ),
+          SizedBox(height: 5),
+          
+        ],
+      ),
+    ]);
   }
 }
