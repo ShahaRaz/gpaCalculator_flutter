@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/logic/academic_course.dart';
 import 'package:gpa_israel/logic/academic_semester.dart';
-import 'widget_course.dart';
+import 'wgt_course.dart';
 
 class Widget_SemesterCoursesList extends StatelessWidget {
   final Semester semester;

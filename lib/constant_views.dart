@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 // Fonts: ______________________________________________Start
 const TextStyle kTXTSTYLE_WHITE50_BOLD =
-    TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.w700);
+    TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.w700);
+
+const TextStyle kTXTSTYLE_LBLUE30_BOLD = TextStyle(
+    color: Colors.lightBlueAccent, fontSize: 30.0, fontWeight: FontWeight.w700);
 
 const TextStyle kTXTSTYLE_BLACK20_BOLD = TextStyle(
     color: Color(0xFF000000), fontSize: 20, fontWeight: FontWeight.bold);

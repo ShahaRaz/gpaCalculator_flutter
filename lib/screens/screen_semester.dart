@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_israel/screens/screen_add_course.dart';
-import 'package:gpa_israel/widgets/widget_circle_with_title.dart';
+import 'package:gpa_israel/widgets/wgt_circle_with_title.dart';
 import 'package:provider/provider.dart';
 import 'package:gpa_israel/logic/manager.dart';
-import 'package:gpa_israel/widgets/widget_semester.dart';
+import 'package:gpa_israel/widgets/wgt_semester.dart';
 import 'package:gpa_israel/constant_views.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:gpa_israel/widgets/wgt_row_averages.dart';
 
 class SemesterScreen extends StatelessWidget {
   @override
@@ -44,9 +46,20 @@ class SemesterScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Text(
+                    AutoSizeText(
                       'GPA  ${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getSemesterAverage()}',
                       style: kTXTSTYLE_WHITE50_BOLD,
+                      minFontSize: 30,
+                      maxFontSize: 60,
+                    ),
+                    RowAverages(
+                      semesterAvg: degreeData
+                          .getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1)
+                          .getSemesterAverage(),
+                      yearAvg: degreeData
+                          .getAcademicYear(year_1to7: 1)
+                          .getYearlyAverage(),
+                      degreeAvg: degreeData.getDegree().getDegAverage(),
                     ),
                     Text(
                       //'${Provider.of<LogicManager>(context).getCourseCount} Tasks',

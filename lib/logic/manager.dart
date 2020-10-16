@@ -47,8 +47,7 @@ class LogicManager extends ChangeNotifier {
 
   Semester getSemester(
       {@required int yearTaken_1to7, @required int semesterTaken_1to3}) {
-    return _localDegree.getSemester(yearTaken_1to7,
-        semesterTaken_1to3);
+    return _localDegree.getSemester(yearTaken_1to7, semesterTaken_1to3);
   }
 
   int getCourseCountSemester(
@@ -58,7 +57,7 @@ class LogicManager extends ChangeNotifier {
         .getNumberOfCoursesInSemester();
   }
 
-  AcademicYear getAcademicYear({@required int year_1to7}){
+  AcademicYear getAcademicYear({@required int year_1to7}) {
     return _localDegree.getAcademicYear(year_1to7: year_1to7);
   }
 
@@ -70,15 +69,15 @@ class LogicManager extends ChangeNotifier {
     semster1.add(new Course(80, 5, "Physics 1"));
     for (Course c in semster1) {
       _localDegree.addNewCourse_toDegree(c, 1, 1);
-      print('inserted course to 1 ');
+      print('inserted course to 1_______________ ');
     }
     semster2 = [];
     semster2.add(new Course(100, 3, "Object Oriented Programming"));
     semster2.add(new Course(90, 3, "Physics 2"));
     semster2.add(new Course(80, 5, "Calculus 2"));
     for (Course c in semster2) {
-      _localDegree.addNewCourse_toDegree(c, 2, 2);
-      print('inserted course to 2 ');
+      _localDegree.addNewCourse_toDegree(c, 1, 2);
+      print('inserted course to 2_______________ ');
     }
     semster3 = [];
     semster3.add(new Course(100, 3, "Design Object Oriented "));
@@ -86,7 +85,7 @@ class LogicManager extends ChangeNotifier {
     semster3.add(new Course(86, 5, "Discrete Math"));
     for (Course c in semster3) {
       _localDegree.addNewCourse_toDegree(c, 2, 1);
-      print('inserted course to 3 ');
+      print('inserted course to 3_______________');
     }
   }
 
@@ -96,7 +95,12 @@ class LogicManager extends ChangeNotifier {
     print('newGPA: $newGPA');
     notifyListeners();
   }
-  void courseDeletedUpdateUI(){
+
+  void courseDeletedUpdateUI() {
     notifyListeners();
+  }
+
+  AcademicDegree getDegree() {
+    return _localDegree;
   }
 }
