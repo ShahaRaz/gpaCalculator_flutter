@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => LogicManager(),
       child: MaterialApp(
+
         home: homeScreen(), // the first screen that would run
       ),
     );

@@ -88,4 +88,3 @@ class AddCourseScreen extends StatelessWidget {
     );
   }
 }
-

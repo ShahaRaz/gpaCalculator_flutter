@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:gpa_israel/constant_views.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-
 class CircleWithTitle extends StatelessWidget {
   /* NOTE!___________
-  * class will present either the icon, or the inputText
+  * class will present EITHER the icon, OR the inputText
   * if provided icon, class will ignore the inputText & inputStyle
   * */
   final IconData inputIcon; //
   final String inputText;
   final TextStyle inputStyle;
   final String headLine;
+  final String bottomLine;
   final Function myOnPress;
 
   CircleWithTitle(
@@ -19,6 +19,7 @@ class CircleWithTitle extends StatelessWidget {
       this.inputText,
       this.inputStyle,
       @required this.headLine,
+      @required this.bottomLine,
       this.myOnPress});
 
   @override
@@ -30,10 +31,12 @@ class CircleWithTitle extends StatelessWidget {
         child: CircleAvatar(
           child: chooseCenterWidget(),
           backgroundColor: Colors.white,
-          radius: 30.0,
+          radius: 45.0,
         ),
         onTap: (myOnPress == null) ? () {} : myOnPress(), //
       ),
+      SizedBox(height: 5),
+      Text(bottomLine, style: kTXTSTYLE_WHITE_SUBTEXT),
     ]);
   }
 

@@ -15,6 +15,16 @@ class SemesterScreen extends StatelessWidget {
       // consumer vid 220, 15:00 flutter Udemy Angela
       builder: (context, degreeData, child) {
         return Scaffold(
+          appBar: AppBar(
+            title: AutoSizeText(degreeData.getDegree().getDegAverage()),
+            backgroundColor: Colors.lightBlueAccent.shade200,
+            leading: GestureDetector(
+              onTap: () {/* Write listener code here */},
+              child: Icon(
+                Icons.menu, // add custom icons also
+              ),
+            ),
+          ),
           backgroundColor: Colors.lightBlueAccent,
           floatingActionButton: FloatingActionButton(
               backgroundColor: Colors.lightBlueAccent,
@@ -35,35 +45,42 @@ class SemesterScreen extends StatelessWidget {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(
-                    top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
+                    top: 30.0, left: 30.0, right: 30.0, bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CircleWithTitle(
+/*                    CircleWithTitle(
                       headLine: 'menu',
                       inputIcon: Icons.list,
                     ),
                     SizedBox(
                       height: 10.0,
-                    ),
-                    AutoSizeText(
+                    ),*/
+/*                    AutoSizeText(
                       'GPA  ${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getSemesterAverage()}',
                       style: kTXTSTYLE_WHITE50_BOLD,
                       minFontSize: 30,
                       maxFontSize: 60,
-                    ),
+                    ),*/
                     RowAverages(
-                      semesterAvg: degreeData
-                          .getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1)
-                          .getSemesterAverage(),
-                      yearAvg: degreeData
-                          .getAcademicYear(year_1to7: 1)
-                          .getYearlyAverage(),
-                      degreeAvg: degreeData.getDegree().getDegAverage(),
-                    ),
-                    Text(
-                      //'${Provider.of<LogicManager>(context).getCourseCount} Tasks',
+                        semesterAvg: degreeData
+                            .getSemester(
+                                yearTaken_1to7: 1, semesterTaken_1to3: 1)
+                            .getSemesterAverage(),
+                        semesterID: '1',
+                        yearAvg: degreeData
+                            .getAcademicYear(year_1to7: 1)
+                            .getYearlyAverage(),
+                        yearID: '1',
+                        degreeAvg: degreeData.getDegree().getDegAverage(),
+                        degreeID:
+                            '1' // todo change to [deg shortName/user name]
+                        ),
+                    SizedBox(height: 30),
+                    AutoSizeText(
                       '${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getNumberOfCoursesInSemester()} Courses',
+                      minFontSize: 12,
+                      maxFontSize: 20,
                       style: kTXTSTYLE_WHITE_SUBTEXT,
                     ),
                   ],
@@ -89,4 +106,6 @@ class SemesterScreen extends StatelessWidget {
       },
     );
   }
+
+  String getLocationInDegree() {}
 }
