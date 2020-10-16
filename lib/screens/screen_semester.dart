@@ -49,21 +49,19 @@ class SemesterScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-
                     RowAverages(
-                        semesterAvg: degreeData
-                            .getSemester(
-                                yearTaken_1to7: 1, semesterTaken_1to3: 1)
-                            .getSemesterAverage(),
-                        semesterID: '1',
-                        yearAvg: degreeData
-                            .getAcademicYear(year_1to7: 1)
-                            .getYearlyAverage(),
-                        yearID: '1',
-                        degreeAvg: degreeData.getDegree().getDegAverage(),
-                        degreeID:
-                            '1' // todo change to [deg shortName/user name]
-                        ),
+                      semesterAvg: degreeData
+                          .getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1)
+                          .getSemesterAverage(),
+                      semesterID: '1',
+                      yearAvg: degreeData
+                          .getAcademicYear(year_1to7: 1)
+                          .getYearlyAverage(),
+                      yearID: '1',
+                      degreeAvg: degreeData.getDegree().getDegAverage(),
+                      degreeID: '1', // todo change to [deg shortName/user name]
+                      academicDegree: degreeData.getDegree(),
+                    ),
                     SizedBox(height: 30),
                     AutoSizeText(
                       '${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getNumberOfCoursesInSemester()} Courses',

@@ -5,23 +5,31 @@ import 'package:gpa_israel/logic/academic_semester.dart';
 import 'package:gpa_israel/logic/academic_year_Class.dart';
 import 'package:gpa_israel/logic/manager.dart';
 import 'wgt_course.dart';
+import 'wgt_navigation_data.dart';
 
 class Widget_NavigationList extends StatelessWidget {
-  final LogicManager _logicManager;
+  final AcademicDegree _academicDegree;
   final int _dataRequired;
-  List<String> _dataList;
+  final List<String> _dataList;
   final int _currentYear;
 
-  Widget_NavigationList(
+  Widget_NavigationList({this._academicDegree, this._dataRequired, this._currentYear});
+
+  /*  Widget_NavigationList(
       this._logicManager, this._dataRequired, this._currentYear) {
     // 1 - Term , 2 Year , 3 Degree TODO change me to enum
-  }
+    getDataList();
+  }*/
   @override
   Widget build(BuildContext context) {
     getDataList();
     return ListView.builder(
       itemBuilder: (context, index) {
-        return Widget_NavigationData();
+        return Widget_NavigationData(
+          firstRow: (index + 1).toString(),
+          secondRow: _dataList[index],
+          myOnPress: () {
+            print('$_dataRequired 1 - Term , 2 Year , 3 Degree');
           },
         );
       },
@@ -34,20 +42,18 @@ class Widget_NavigationList extends StatelessWidget {
     switch (_dataRequired) {
       case 1:
         AcademicYear currentYear1 =
-            _logicManager.getAcademicYear(year_1to7: _currentYear);
+            _academicDegree.getAcademicYear(year_1to7: _currentYear);
         for (Semester sem in currentYear1.getSemestersList()) {
           _dataList.add(sem.getSemesterAverage());
         }
         break;
       case 2:
-        AcademicDegree currentDegree1 = _logicManager.getDegree();
-        for (AcademicYear year in currentDegree1.getYearsList()) {
+        for (AcademicYear year in _academicDegree.getYearsList()) {
           _dataList.add(year.getYearlyAverage());
         }
         break;
       case 3:
-        AcademicDegree degree = _logicManager.getDegree();
-        _dataList.add(degree.getDegAverage());
+        _dataList.add(_academicDegree.getDegAverage());
     }
   }
 }
