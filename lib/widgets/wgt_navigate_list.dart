@@ -8,28 +8,33 @@ import 'wgt_course.dart';
 import 'wgt_navigation_data.dart';
 
 class Widget_NavigationList extends StatelessWidget {
-  final AcademicDegree _academicDegree;
-  final int _dataRequired;
-  final List<String> _dataList;
-  final int _currentYear;
+  final AcademicDegree academicDegree;
+  final int dataRequired;
+  final int currentYear;
 
-  Widget_NavigationList({this._academicDegree, this._dataRequired, this._currentYear});
+  List<String> _dataList;
+
+  Widget_NavigationList(
+      {@required this.academicDegree,
+      @required this.dataRequired,
+      @required this.currentYear}) {
+    getDataList(); // 1 - Term , 2 Year , 3 Degree TODO change me to enum
+  }
 
   /*  Widget_NavigationList(
       this._logicManager, this._dataRequired, this._currentYear) {
-    // 1 - Term , 2 Year , 3 Degree TODO change me to enum
+
     getDataList();
   }*/
   @override
   Widget build(BuildContext context) {
-    getDataList();
     return ListView.builder(
       itemBuilder: (context, index) {
         return Widget_NavigationData(
           firstRow: (index + 1).toString(),
           secondRow: _dataList[index],
           myOnPress: () {
-            print('$_dataRequired 1 - Term , 2 Year , 3 Degree');
+            print('$dataRequired 1 - Term , 2 Year , 3 Degree');
           },
         );
       },
@@ -39,21 +44,31 @@ class Widget_NavigationList extends StatelessWidget {
 
   void getDataList() {
     // 1 - Term , 2 Year , 3 Degree TODO change me to enum
-    switch (_dataRequired) {
+    _dataList = []; // init the list
+    switch (dataRequired) {
       case 1:
+        print('case 1');
         AcademicYear currentYear1 =
-            _academicDegree.getAcademicYear(year_1to7: _currentYear);
-        for (Semester sem in currentYear1.getSemestersList()) {
-          _dataList.add(sem.getSemesterAverage());
+            academicDegree.getAcademicYear(year_1to7: currentYear);
+        for (int i = 0; i <= 2; i++) { // over semesters in year
+          // String valToAdd = currentYear1.getSemester(i).getSemesterAverage();
+          String valToAdd = currentYear1.getSemester(i).getSemesterAverage();
+
+          if (valToAdd != null) {
+            print(valToAdd);
+            _dataList.add(valToAdd);
+          }
         }
         break;
       case 2:
-        for (AcademicYear year in _academicDegree.getYearsList()) {
+        print('case 2');
+        for (AcademicYear year in academicDegree.getYearsList()) {
           _dataList.add(year.getYearlyAverage());
         }
         break;
       case 3:
-        _dataList.add(_academicDegree.getDegAverage());
+        print('case 3');
+        _dataList.add(academicDegree.getDegAverage());
     }
   }
 }

@@ -36,14 +36,12 @@ class RowAverages extends StatelessWidget {
             inputStyle: kTXTSTYLE_LBLUE30_BOLD,
             bottomLine: semesterID,
             myOnPress: () {
-          /*    Widget_NavigationList(
+              /*    Widget_NavigationList(
                 _academicDegree: academicDegree,
               _currentYear: 1,
              _dataRequired: 1, // 1 - Term , 2 Year , 3 Degree TODO change me to enum
 
               ),*/
-
-
             },
           ),
           CircleWithTitle(
@@ -62,10 +60,37 @@ class RowAverages extends StatelessWidget {
         ],
       ),
       SizedBox(height: 5),
-      ReusableCard(
-        color1: Colors.lightBlue,
-        cardChild: Widget_NavigationList(),
+      Container(
+        height: 30,
+        width: double.infinity,
+        child: ReusableCard(
+          color1: Colors.white,
+          cardChild: Widget_NavigationList(
+            academicDegree: academicDegree,
+            currentYear: int.parse(yearID),
+            dataRequired: 1,
+          ),
+        ),
       ),
     ]);
   }
+
+
+
 }
+
+
+/*
+class RowAverages extends StatefulWidget {
+  @override
+  _RowAveragesState createState() => _RowAveragesState();
+}
+
+class _RowAveragesState extends State<RowAverages> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+*/
+

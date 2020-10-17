@@ -80,7 +80,7 @@ class AcademicDegree {
     myLogicManager.deleteCourseNUpdate(deleteMe);
   }
 
-  UnmodifiableListView<AcademicYear> getYearsList(){
+  List<AcademicYear> getYearsList(){
     return _academicYears;
   }
 

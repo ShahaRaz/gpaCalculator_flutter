@@ -8,8 +8,9 @@ class Semester {
   int _semesterENUM; //const -> SEMESTER_NAMES
   double _semesterAvg;
 
-  int _numOfCoursesInSemester = 0; // also available using courses.length (maybe later it wouldn't
-   // (if adding also categories for courses)
+  int _numOfCoursesInSemester =
+      0; // also available using courses.length (maybe later it wouldn't
+  // (if adding also categories for courses)
   double _totalPointsInSemester = 0;
   AcademicYear _academicYear; // in which year was this semester
 
@@ -17,8 +18,6 @@ class Semester {
   double _calcHelper_numeratorForAvg;
   // ignore: non_constant_identifier_names
   double _pointsInSemester_calcHelper;
-
-
 
   Semester(this._semesterENUM) {
     coursesInSemester = [];
@@ -43,8 +42,11 @@ class Semester {
   }
 
   String getSemesterAverage() {
-    _semesterAvg = _calcHelper_numeratorForAvg / _pointsInSemester_calcHelper;
-    return _semesterAvg.toStringAsFixed(2);
+    if (_pointsInSemester_calcHelper != 0) {
+      _semesterAvg = _calcHelper_numeratorForAvg / _pointsInSemester_calcHelper;
+      return _semesterAvg.toStringAsFixed(2);
+    }
+    return '0';
   }
 
   String getSemesterName() {
@@ -65,6 +67,5 @@ class Semester {
     _numOfCoursesInSemester--; // now also availble with list.length (later maybe not) if we change structure
     coursesInSemester.remove(deleteMe);
     _academicYear.deleteCourseFromYear(deleteMe);
-    
   }
 }
