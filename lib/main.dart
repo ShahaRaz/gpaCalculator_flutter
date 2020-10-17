@@ -7,6 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'logic/manager.dart';
 
+
+// TODO 17oct2020: fix the navigation to other semesters & years (FROM wgt_row_averages)
+// design details in oneNote's flutter notebook 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
