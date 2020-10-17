@@ -1,16 +1,20 @@
 import 'academic_semester.dart';
 
 class Course {
-  int _grade;
-  String _subject;
-  double _pointsForCourse; // weight (nekudot zhut)
+  int _grade = 0;
+  String _subject = '';
+  double _pointsForCourse = 0; // weight (nekudot zhut)
   Semester _semesterTaken; // semster will know in which year he blongs
-
-  Course(this._grade, this._pointsForCourse, this._subject); // 1,2,3=summer
+  double _calcHelper_numeratorForAvg = 0;
+  Course(this._grade, this._pointsForCourse, this._subject) {
+    _calcHelper_numeratorForAvg =
+        _pointsForCourse * _grade; // instead of calculate again each level
+  } // 1,2,3=summer
 
   void setSemester(Semester parentSemester) {
     this._semesterTaken = parentSemester;
   }
+
 
   int getGrade() {
     return this._grade;
@@ -24,4 +28,7 @@ class Course {
     return this._subject;
   }
 
+  double getNumeratorConterbution() {
+    return _calcHelper_numeratorForAvg;
+  }
 }
