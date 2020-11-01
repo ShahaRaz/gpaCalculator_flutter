@@ -6,7 +6,9 @@ import 'package:gpa_israel/logic/manager.dart';
 import 'package:gpa_israel/widgets/wgt_semester.dart';
 import 'package:gpa_israel/constant_views.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:gpa_israel/widgets/wgt_row_averages___OLD.dart';
 import 'package:gpa_israel/widgets/wgt_row_averages.dart';
+import 'package:gpa_israel/widgets/wgt_Navigator_view.dart';
 
 class SemesterScreen extends StatelessWidget {
   @override
@@ -63,6 +65,10 @@ class SemesterScreen extends StatelessWidget {
                       academicDegree: degreeData.getDegree(),
                     ),
                     SizedBox(height: 30),
+                    Widget_NavigatorView(
+                        academicDegree: degreeData.getDegree(),
+                        dataRequired: 2,
+                        yearID: '2'),
                     AutoSizeText(
                       '${degreeData.getSemester(yearTaken_1to7: 1, semesterTaken_1to3: 1).getNumberOfCoursesInSemester()} Courses',
                       minFontSize: 12,
